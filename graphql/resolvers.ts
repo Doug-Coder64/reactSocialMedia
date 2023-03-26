@@ -1,4 +1,3 @@
-//TODO write more resolvers
 import prisma from "../lib/prisma";
 export const resolvers = {
   Query: {
@@ -6,7 +5,10 @@ export const resolvers = {
       return prisma.user.findMany();
     },
     posts: () => {
-      return prisma.post.findMany();
+      prisma.post.findMany();
+    },
+    links: () => {
+      prisma.link.findMany();
     },
   },
 };
