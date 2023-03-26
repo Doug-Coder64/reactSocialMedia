@@ -1,2 +1,3 @@
-//TODO: Write schema
-export const typeDefs = {};
+import { builder } from "./builder";
+import "./types/index";
+export const schema = builder.toSchema();
