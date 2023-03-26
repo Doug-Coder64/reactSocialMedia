@@ -9,3 +9,10 @@ builder.prismaObject("Link", {
   }),
 });
 
+builder.queryField("links", (t) =>
+  t.prismaField({
+    type: ["Link"],
+    resolve: (query, _parent, _args, _ctx, _info) =>
+      prisma.link.findMany({ ...query }),
+  })
+);

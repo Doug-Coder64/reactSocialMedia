@@ -1,5 +1,3 @@
 import { builder } from "./builder";
-import "./types/Link";
-import "./types/Post";
-import "./types/User";
+import "./types/index";
 export const schema = builder.toSchema();

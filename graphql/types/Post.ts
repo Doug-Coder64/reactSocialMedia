@@ -16,3 +16,11 @@ builder.prismaObject("Post", {
     imageLink: t.relation("imageLink", { nullable: true }),
   }),
 });
+
+builder.queryField("posts", (t) =>
+  t.prismaField({
+    type: ["Post"],
+    resolve: (query, _parent, _args, _ctx, _info) =>
+      prisma.post.findMany({ ...query }),
+  })
+);
