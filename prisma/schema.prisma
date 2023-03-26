@@ -5,6 +5,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator pothos {
+    provider = "prisma-pothos-types"
+    prismaUtils = true
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -20,7 +25,7 @@ model User {
 
 model Post {
   id          Int      @id @default(autoincrement())
-  title       String
+  title       String?
   content     String
   authorId    Int
   author      User     @relation(fields: [authorId], references: [id])
