@@ -4,6 +4,8 @@ import type PrismaTypes from "@pothos/plugin-prisma/generated";
 import prisma from "../lib/prisma";
 import PrismaUtils from "@pothos/plugin-prisma-utils";
 import { DateResolver } from "graphql-scalars";
+import RelayPlugin from "@pothos/plugin-relay";
+
 export const builder = new SchemaBuilder<{
   Scalars: {
     Date: {
@@ -13,7 +15,8 @@ export const builder = new SchemaBuilder<{
   };
   PrismaTypes: PrismaTypes;
 }>({
-  plugins: [PrismaPlugin, PrismaUtils],
+  plugins: [PrismaPlugin, PrismaUtils, RelayPlugin],
+  relayOptions: {},
   prisma: {
     client: prisma,
   },

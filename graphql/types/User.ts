@@ -11,8 +11,9 @@ builder.prismaObject("User", {
 });
 
 builder.queryField("users", (t) =>
-  t.prismaField({
-    type: ["User"],
+  t.prismaConnection({
+    type: "User",
+    cursor: "id",
     resolve: (query, _parent, _args, _ctx, _info) =>
       prisma.user.findMany({ ...query }),
   })
