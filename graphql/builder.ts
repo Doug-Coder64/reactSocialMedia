@@ -5,6 +5,7 @@ import prisma from "../lib/prisma";
 import PrismaUtils from "@pothos/plugin-prisma-utils";
 import { DateResolver } from "graphql-scalars";
 import RelayPlugin from "@pothos/plugin-relay";
+import { createContext } from "../graphql/context";
 
 export const builder = new SchemaBuilder<{
   Scalars: {
@@ -14,6 +15,7 @@ export const builder = new SchemaBuilder<{
     };
   };
   PrismaTypes: PrismaTypes;
+  Context: ReturnType<typeof createContext>;
 }>({
   plugins: [PrismaPlugin, PrismaUtils, RelayPlugin],
   relayOptions: {},
@@ -30,3 +32,5 @@ builder.queryType({
     }),
   }),
 });
+
+builder.mutationType({});

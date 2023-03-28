@@ -5,7 +5,6 @@ builder.prismaObject("User", {
     id: t.exposeID("id"),
     name: t.exposeString("name"),
     email: t.exposeString("email", { nullable: false }),
-    password: t.exposeString("password", { nullable: false }),
     posts: t.relation("posts"),
   }),
 });

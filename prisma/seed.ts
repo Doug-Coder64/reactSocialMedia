@@ -6,7 +6,6 @@ async function main() {
     data: {
       email: `testemail@gmail.com`,
       name: "john",
-      password: "testpassword",
     },
   });
 }
