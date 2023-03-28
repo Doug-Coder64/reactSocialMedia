@@ -24,7 +24,7 @@ const AllLinksQuery = gql`
   }
 `;
 
-const Home: NextPage = () => {
+function Home() {
   const { data, loading, error, fetchMore } = useQuery(AllLinksQuery, {
     variables: { first: 2 },
   });
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Awesome Links</title>
+        <title>React Social Medias</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
@@ -45,7 +45,11 @@ const Home: NextPage = () => {
         <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
           {data?.links.edges.map(({ node }: { node: Link }) => (
             <li key={node.id} className='shadow  max-w-md  rounded'>
-              <img className='shadow-sm' src={node.Url ? node.Url : ""} />
+              <Image
+                className='shadow-sm'
+                src={node.Url ? node.Url : ""}
+                alt={node.altText ? node.altText : ""}
+              />
               <div className='p-5 flex flex-col space-y-2'>
                 <p className='text-gray-600'>{node.altText}</p>
               </div>
@@ -72,12 +76,12 @@ const Home: NextPage = () => {
           </button>
         ) : (
           <p className='my-10 text-center font-medium'>
-            You've reached the end!{" "}
+            You&apos;ve reached the end!{" "}
           </p>
         )}
       </div>
     </div>
   );
-};
+}
 
 export default Home;
