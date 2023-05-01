@@ -6,7 +6,7 @@ import { gql, useQuery } from "@apollo/client";
 import type { Link } from "@prisma/client";
 
 const AllLinksQuery = gql`
-  query AllLinksQuery($first: int, $after: ID) {
+  query Query($first: Int, $after: ID) {
     links(first: $first, after: $after) {
       pageInfo {
         endCursor
@@ -14,11 +14,10 @@ const AllLinksQuery = gql`
       }
       edges {
         cursor
-      }
-      node {
-        id
-        Url
-        altText
+        node {
+          Url
+          altText
+        }
       }
     }
   }
@@ -26,7 +25,7 @@ const AllLinksQuery = gql`
 
 function Home() {
   const { data, loading, error, fetchMore } = useQuery(AllLinksQuery, {
-    variables: { first: 2 },
+    variables: { first: 1 },
   });
 
   if (loading) return <p>Loading...</p>;
@@ -37,7 +36,7 @@ function Home() {
   return (
     <div>
       <Head>
-        <title>React Social Medias</title>
+        <title>React Social Media</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
@@ -46,6 +45,9 @@ function Home() {
           {data?.links.edges.map(({ node }: { node: Link }) => (
             <li key={node.id} className='shadow  max-w-md  rounded'>
               <Image
+                key={node.id}
+                width={100}
+                height={100}
                 className='shadow-sm'
                 src={node.Url ? node.Url : ""}
                 alt={node.altText ? node.altText : ""}

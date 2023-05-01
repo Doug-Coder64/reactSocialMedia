@@ -11,17 +11,37 @@ builder.prismaObject("Post", {
     successor: t.relation("successor", { nullable: true }),
     predecessor: t.relation("predecessor", { nullable: true }),
     published: t.exposeBoolean("published"),
-    createdAt: t.field({ type: "Date", resolve: (post) => post.createdAt }),
+    createdAt: t.field({ type: "DateTime", resolve: (post) => post.createdAt }),
     imageLinkId: t.exposeInt("imageLinkId", { nullable: true }),
     imageLink: t.relation("imageLink", { nullable: true }),
   }),
 });
 
-builder.queryField("posts", (t) =>
-  t.prismaConnection({
+// builder.queryType({
+//   fields: (t) => ({
+//     me: t.prismaField({
+//       type: "Post",
+//       resolve: async (query, root, arg, ctx, info) =>
+//         prisma.post.findUniqueOrThrow({ ...query, where: { id: arg.id } }),
+//     }),
+//   }),
+// });
+
+builder.queryFields((t) => ({
+  post: t.prismaField({
     type: "Post",
-    cursor: "id",
-    resolve: (query, _parent, _args, _ctx, _info) =>
-      prisma.post.findMany({ ...query }),
-  })
-);
+    args: {
+      id: t.arg.int({ required: true }),
+    },
+    resolve: async (query, _parent, _args, _ctx, _info) => {
+      const id = _args.id;
+
+      return prisma.post.findUniqueOrThrow({
+        ...query,
+        where: { id },
+      });
+    },
+  }),
+}));
+
+builder.mutationFields((t) => ({}));
