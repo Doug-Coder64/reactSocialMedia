@@ -2,7 +2,6 @@ import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import { gql, useQuery } from "@apollo/client";
 import type { Link } from "@prisma/client";
-import { Main } from "next/document";
 import Head from "next/head";
 
 const AllLinksQuery = gql`
