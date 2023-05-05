@@ -1,9 +1,8 @@
-import type { NextPage } from "next";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import { gql, useQuery } from "@apollo/client";
 import type { Link } from "@prisma/client";
-import { Main } from "next/document";
+import Head from "next/head";
 
 const AllLinksQuery = gql`
   query Query($first: Int, $after: ID) {
@@ -35,6 +34,10 @@ function Home() {
 
   return (
     <main className='content-wrapper'>
+      <Head>
+        <title>React Social Media</title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
       <div className='content w-full'>
         <div className='feed-container'>
           <div className='feed-wrapper'>
