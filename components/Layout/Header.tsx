@@ -1,60 +1,47 @@
 import React from "react";
 import Link from "next/link";
+import NavButton from "./navbutton/NavButton";
+
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 const Header = () => {
   const { user } = useUser();
 
   return (
-    <header className='text-gray-600 body-font'>
-      <div className='container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center'>
-        <Link
-          href='/'
-          className='flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0'
-        >
-          <svg
-            className='w-10 h-10 text-white p-2 bg-blue-500 rounded-full'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth='2'
-              d='M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1'
-            ></path>
-          </svg>
-        </Link>
-        <nav className='md:ml-auto flex flex-wrap items-center text-base justify-center'>
+    <header className='header h-screen lg:w-72'>
+      <div className='p-5 w-1'></div>
+      <div className=' lg:w-72'>
+        <nav className='sidebar'>
+          <NavButton
+            icon={
+              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
+                <path d='M 32 8 C 31.08875 8 30.178047 8.3091875 29.435547 8.9296875 L 8.8007812 26.171875 C 8.0357812 26.810875 7.7634844 27.925203 8.2714844 28.783203 C 8.9184844 29.875203 10.35025 30.088547 11.28125 29.310547 L 12 28.710938 L 12 47 C 12 49.761 14.239 52 17 52 L 47 52 C 49.761 52 52 49.761 52 47 L 52 28.712891 L 52.71875 29.3125 C 53.09275 29.6255 53.546047 29.777344 53.998047 29.777344 C 54.693047 29.777344 55.382672 29.416656 55.763672 28.722656 C 56.228672 27.874656 55.954891 26.803594 55.212891 26.183594 L 52 23.498047 L 52 15 C 52 13.895 51.105 13 50 13 L 48 13 C 46.895 13 46 13.895 46 15 L 46 18.484375 L 34.564453 8.9296875 C 33.821953 8.3091875 32.91125 8 32 8 z M 32 12.152344 C 32.11475 12.152344 32.228766 12.191531 32.322266 12.269531 L 48 25.369141 L 48 46 C 48 47.105 47.105 48 46 48 L 38 48 L 38 34 C 38 32.895 37.105 32 36 32 L 28 32 C 26.895 32 26 32.895 26 34 L 26 48 L 18 48 C 16.895 48 16 47.105 16 46 L 16 25.367188 L 31.677734 12.269531 C 31.771234 12.191531 31.88525 12.152344 32 12.152344 z' />
+              </svg>
+            }
+            nameLabel='Home'
+            href={"/"}
+          />
+
           {user ? (
-            <div className='flex items-center space-x-5'>
-              <Link
-                href='/favorites'
-                className='inline-flex items-center border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0'
-              >
-                My Favorites
-              </Link>
-              <Link
-                href='/api/auth/logout'
-                className='inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0'
-              >
-                Logout
-              </Link>
-              <img
-                alt='profile'
-                className='rounded-full w-12 h-12'
-                src={user.picture ? user.picture : ""}
-              />
-            </div>
+            <NavButton
+              href='/api/auth/logout'
+              icon={
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
+                  <path d='M 44 10 C 40.141 10 37 13.14 37 17 C 37 17.41247 37.042553 17.813957 37.111328 18.207031 L 21.833984 25.845703 C 20.842225 25.306274 19.705938 25 18.5 25 C 14.641 25 11.5 28.14 11.5 32 C 11.5 35.86 14.641 39 18.5 39 C 19.908581 39 21.218937 38.578394 22.318359 37.859375 L 37.033203 46.353516 C 37.013572 46.566652 37 46.781827 37 47 C 37 50.86 40.141 54 44 54 C 47.859 54 51 50.86 51 47 C 51 43.14 47.859 40 44 40 C 41.801349 40 39.839074 41.022294 38.554688 42.613281 L 24.935547 34.751953 C 25.29835 33.906798 25.5 32.97649 25.5 32 C 25.5 30.870753 25.225031 29.806738 24.748047 28.861328 L 38.904297 21.783203 C 40.182218 23.143679 41.991094 24 44 24 C 47.859 24 51 20.86 51 17 C 51 13.14 47.859 10 44 10 z M 44 14 C 45.654 14 47 15.346 47 17 C 47 18.654 45.654 20 44 20 C 42.346 20 41 18.654 41 17 C 41 15.346 42.346 14 44 14 z M 18.5 29 C 20.154 29 21.5 30.346 21.5 32 C 21.5 33.654 20.154 35 18.5 35 C 16.846 35 15.5 33.654 15.5 32 C 15.5 30.346 16.846 29 18.5 29 z M 44 44 C 45.654 44 47 45.346 47 47 C 47 48.654 45.654 50 44 50 C 42.346 50 41 48.654 41 47 C 41 45.346 42.346 44 44 44 z' />
+                </svg>
+              }
+              nameLabel='Logout'
+            />
           ) : (
-            <Link
+            <NavButton
               href='/api/auth/login'
-              className='inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0'
-            >
-              Login
-            </Link>
+              icon={
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
+                  <path d='M 44 10 C 40.141 10 37 13.14 37 17 C 37 17.41247 37.042553 17.813957 37.111328 18.207031 L 21.833984 25.845703 C 20.842225 25.306274 19.705938 25 18.5 25 C 14.641 25 11.5 28.14 11.5 32 C 11.5 35.86 14.641 39 18.5 39 C 19.908581 39 21.218937 38.578394 22.318359 37.859375 L 37.033203 46.353516 C 37.013572 46.566652 37 46.781827 37 47 C 37 50.86 40.141 54 44 54 C 47.859 54 51 50.86 51 47 C 51 43.14 47.859 40 44 40 C 41.801349 40 39.839074 41.022294 38.554688 42.613281 L 24.935547 34.751953 C 25.29835 33.906798 25.5 32.97649 25.5 32 C 25.5 30.870753 25.225031 29.806738 24.748047 28.861328 L 38.904297 21.783203 C 40.182218 23.143679 41.991094 24 44 24 C 47.859 24 51 20.86 51 17 C 51 13.14 47.859 10 44 10 z M 44 14 C 45.654 14 47 15.346 47 17 C 47 18.654 45.654 20 44 20 C 42.346 20 41 18.654 41 17 C 41 15.346 42.346 14 44 14 z M 18.5 29 C 20.154 29 21.5 30.346 21.5 32 C 21.5 33.654 20.154 35 18.5 35 C 16.846 35 15.5 33.654 15.5 32 C 15.5 30.346 16.846 29 18.5 29 z M 44 44 C 45.654 44 47 45.346 47 47 C 47 48.654 45.654 50 44 50 C 42.346 50 41 48.654 41 47 C 41 45.346 42.346 44 44 44 z' />
+                </svg>
+              }
+              nameLabel='Login'
+            />
           )}
         </nav>
       </div>

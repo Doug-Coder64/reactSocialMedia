@@ -1,0 +1,13 @@
+@use "../../variables";
+
+.hidden {
+  display: flex;
+  flex-basis: auto;
+  width: 1px;
+  height: 1px;
+  min-width: 32px;
+  min-height: 32px;
+  position: absolute;
+  padding: 0px;
+  overflow: hidden;
+}

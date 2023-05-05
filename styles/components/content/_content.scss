@@ -1,0 +1,23 @@
+@use "../../variables";
+@use "feed";
+
+.content-wrapper {
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  position: relative;
+  flex-grow: 1;
+  align-items: flex-start;
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+.content {
+  display: flex;
+  flex-shrink: 1;
+  flex-grow: 1;
+  align-items: stretch;
+  flex-basis: auto;
+  flex-direction: column;
+}

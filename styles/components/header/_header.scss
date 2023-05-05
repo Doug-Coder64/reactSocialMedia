@@ -1,0 +1,15 @@
+@use "../../variables";
+@use "sidebar";
+
+.header {
+  margin: 0;
+  margin-left: 2rem;
+  display: flex;
+  flex-basis: auto;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+  min-width: 0;
+  min-height: 0;
+}
