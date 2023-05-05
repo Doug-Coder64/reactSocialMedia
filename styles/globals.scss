@@ -1,13 +1,30 @@
+@use "variables";
+
 @import "~tailwindcss/base";
 @import "~tailwindcss/components";
 @import "~tailwindcss/utilities";
+
+@import "components/header/header";
+@import "components/hidden/hidden";
+@import "components/content/content";
+
+html {
+  overflow-y: scroll;
+  overscroll-behavior-y: none;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
 
 html,
 body {
   padding: 0;
   margin: 0;
+  height: 100%;
+  display: block;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: variables.$background;
+  color: variables.$primary;
 }
 
 a {
@@ -23,9 +40,18 @@ a {
   html {
     color-scheme: light;
   }
+}
 
-  body {
-    color: black;
-    background: white;
-  }
+.root {
+  pointer-events: none !important;
+  display: flex;
+  height: 100%;
+  flex: 1;
+  align-items: stretch;
+  border: 0 solid black;
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  z-index: 0;
+  flex-direction: row;
 }

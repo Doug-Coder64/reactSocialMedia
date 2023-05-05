@@ -1,0 +1,39 @@
+@use "../../variables";
+
+.nav-button {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  align-items: flex-start;
+  position: relative;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  width: 100%;
+
+  flex-grow: 1;
+
+  :hover {
+    // color: rgba(variables.$primary, 0.9);
+    // fill: rgba(variables.$primary, 0.9);
+    border-radius: 24px;
+    background-color: rgba(variables.$primary, 0.2);
+  }
+
+  div {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  svg {
+    width: 3rem;
+    pointer-events: none;
+  }
+
+  span {
+    font-size: 24px;
+    width: 100%;
+    pointer-events: none;
+  }
+}
