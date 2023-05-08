@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
-const NavButton = (props: {
-  icon: React.ReactNode;
+interface Props {
+  children: React.ReactNode;
   href: string;
   nameLabel: string;
-}) => {
+}
+const NavButton: React.FC<Props> = (props: Props) => {
   const [width, setWidth] = React.useState(1025);
   const breakpoint = 1024;
 
@@ -16,7 +17,7 @@ const NavButton = (props: {
   return (
     <Link className='nav-button' href={props.href}>
       <div>
-        {props.icon}
+        {props.children}
         {width > breakpoint ? (
           <span className='px-2'>{props.nameLabel}</span>
         ) : (

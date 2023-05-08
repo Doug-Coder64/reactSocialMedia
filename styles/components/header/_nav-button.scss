@@ -1,8 +1,8 @@
 @use "../../variables";
 
 .nav-button {
-  pointer-events: auto;
   display: flex;
+  pointer-events: auto;
   flex-direction: row;
   text-align: left;
   align-items: flex-start;
@@ -27,11 +27,13 @@
   }
 
   svg {
+    display: flex;
     width: 3rem;
     pointer-events: none;
   }
 
   span {
+    display: flex;
     font-size: 24px;
     width: 100%;
     pointer-events: none;

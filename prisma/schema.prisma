@@ -28,9 +28,9 @@ model Post {
   content     String
   authorId    Int
   author      User     @relation(fields: [authorId], references: [id])
-  successorId Int?     @unique
-  successor   Post?    @relation("comments", fields: [successorId], references: [id])
-  predecessor Post?    @relation("comments")
+  predecessorId Int?     @unique
+  predecessor   Post?    @relation("comments", fields: [predecessorId], references: [id])
+  successor Post?    @relation("comments")
   published   Boolean  @default(false)
   createdAt   DateTime @default(now())
   imageLinkId Int?
